@@ -25,7 +25,7 @@ error_channel_id = -1002476114422
 logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s', level=logging.INFO)
 
 client = MongoClient(MONGO_URI, tlsCAFile=certifi.where())
-db = client['LEGACY']
+db = client['LEGACY0']
 users_collection = db.users
 
 bot = telebot.TeleBot(TOKEN)
