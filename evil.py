@@ -416,4 +416,165 @@ def when_command(message):
                                        "*🚀 You can now launch your own attack and showcase your skills!*", 
                                        reply_markup=create_inline_keyboard(), parse_mode='Markdown')
     else:
-        bot.send_message(chat_id, "*❌ No attack is currently in progress!*\n
+        bot.send_message(chat_id, "*❌ No attack is currently in progress!*\n"
+                                   "*🔄 Feel free to initiate your attack whenever you're ready!*", 
+                                   reply_markup=create_inline_keyboard(), parse_mode='Markdown')
+
+
+@bot.message_handler(commands=['myinfo'])
+def myinfo_command(message):
+    try:
+        user_id = message.from_user.id
+        user_data = users_collection.find_one({"user_id": user_id})
+
+        # Set timezone and format date/time
+        tz = pytz.timezone('Asia/Kolkata')
+        now = datetime.now(tz)
+        current_date = now.date().strftime("%Y-%m-%d")
+        current_time = now.strftime("%I:%M:%S %p")
+
+        if not user_data:
+            response = (
+                "*⚠️ No account information found. ⚠️*\n"
+                "*It looks like you don't have an account with us.*\n"
+                "*Please contact the owner for assistance.*\n"
+            )
+            markup = types.InlineKeyboardMarkup()
+            button1 = types.InlineKeyboardButton(text="☣️ 𝗖𝗼𝗻𝘁𝗮𝗰𝘁 𝗢𝘄𝗻𝗲𝗿 ☣️",
+                                                 url="t.me/DAKUBhaiZz")
+            button2 = types.InlineKeyboardButton(
+                text="💸 𝗣𝗿𝗶𝗰𝗲 𝗟𝗶𝘀𝘁 💸", url="https://t.me/DAKUBHAIZ/738")
+            markup.add(button1)
+            markup.add(button2)
+        else:
+            username = message.from_user.username or "Unknown User"
+            plan = user_data.get('plan', 'N/A')
+            valid_until = user_data.get('valid_until', 'N/A')
+
+            response = (
+                f"*👤 Username: @{username}*\n"
+                f"*💼 Plan: {plan} ₹*\n"
+                f"*📅 Valid Until: {valid_until}*\n"
+                f"*📆 Current Date: {current_date}*\n"
+                f"*🕒 Current Time: {current_time}*\n"
+                "*🎉 Thank you for being with us! 🎉*\n"
+                "*If you need any help or have questions, feel free to ask.* 💬"
+            )
+            markup = types.InlineKeyboardMarkup()
+            button = types.InlineKeyboardButton(
+                text="🔥 𝗝𝗼𝗶𝗻 𝗢𝘂𝗿 𝗖𝗵𝗮𝗻𝗻𝗲𝗹 🔥", url="https://t.me/DAKUBHAIZ")
+            markup.add(button)
+
+        bot.send_message(message.chat.id,
+                         response,
+                         parse_mode='Markdown',
+                         reply_markup=markup)
+    except Exception as e:
+        logging.error(f"Error handling /myinfo command: {e}")
+
+@bot.message_handler(commands=['rules'])
+def rules_command(message):
+    rules_text = (
+        "*📜 Bot Rules - Keep It Cool!\n\n"
+        "1. No spamming attacks! ⛔ \nRest for 5-6 matches between DDOS.\n\n"
+        "2. Limit your kills! 🔫 \nStay under 30-40 kills to keep it fair.\n\n"
+        "3. Play smart! 🎮 \nAvoid reports and stay low-key.\n\n"
+        "4. No mods allowed! 🚫 \nUsing hacked files will get you banned.\n\n"
+        "5. Be respectful! 🤝 \nKeep communication friendly and fun.\n\n"
+        "6. Report issues! 🛡️ \nMessage TO Owner for any problems.\n\n"
+        "💡 Follow the rules and let’s enjoy gaming together!*"
+    )
+
+    try:
+        bot.send_message(message.chat.id, rules_text, reply_markup=create_inline_keyboard(), parse_mode='Markdown')
+    except Exception as e:
+        print(f"Error while processing /rules command: {e}")
+
+    except Exception as e:
+        print(f"Error while processing /rules command: {e}")
+
+
+@bot.message_handler(commands=['help'])
+def help_command(message):
+    help_text = ("*🌟 Welcome to the Ultimate Command Center!*\n\n"
+                 "*Here’s what you can do:* \n"
+                 "1. *`/attack` - ⚔️ Launch a powerful attack and show your skills!*\n"
+                 "2. *`/myinfo` - 👤 Check your account info and stay updated.*\n"
+                 "3. *`/owner` - 📞 Get in touch with the mastermind behind this bot!*\n"
+                 "4. *`/when` - ⏳ Curious about the bot's status? Find out now!*\n"
+                 "5. *`/canary` - 🦅 Grab the latest Canary version for cutting-edge features.*\n"
+                 "6. *`/rules` - 📜 Review the rules to keep the game fair and fun.*\n\n"
+                 "*💡 Got questions? Don't hesitate to ask! Your satisfaction is our priority!*")
+
+    try:
+        bot.send_message(message.chat.id, help_text, reply_markup=create_inline_keyboard(), parse_mode='Markdown')
+    except Exception as e:
+        print(f"Error while processing /help command: {e}")
+
+
+
+@bot.message_handler(commands=['owner'])
+def owner_command(message):
+    response = (
+        "*👤 **Owner Information:**\n\n"
+        "For any inquiries, support, or collaboration opportunities, don't hesitate to reach out to the owner:\n\n"
+        "📩 **Telegram:** @DAKUBhaiZz"
+        "💬 **We value your feedback!** Your thoughts and suggestions are crucial for improving our service and enhancing your experience.\n\n"
+        "🌟 **Thank you for being a part of our community!** Your support means the world to us, and we’re always here to help!*\n"
+    )
+    bot.send_message(message.chat.id, response, reply_markup=create_inline_keyboard(), parse_mode='Markdown')
+
+@bot.message_handler(commands=['start'])
+def start_message(message):
+    try:
+        bot.send_message(message.chat.id, "*🌍 WELCOME TO DAKU DDOS WORLD!* 🎉\n\n"
+                                           "*🚀 Get ready to dive into the action!*\n\n"
+                                           "*💣 To unleash your power, use the* `/attack` *command followed by your target's IP and port.* ⚔️\n\n"
+                                           "*🔍 Example: After* `/attack`, *enter:* `ip port duration`.\n\n"
+                                           "*🔥 Ensure your target is locked in before you strike!*\n\n"
+                                           "*📚 New around here? Check out the* `/help` *command to discover all my capabilities.* 📜\n\n"
+                                           "*⚠️ Remember, with great power comes great responsibility! Use it wisely... or let the chaos reign!* 😈💥", 
+                                           reply_markup=create_inline_keyboard(), parse_mode='Markdown')
+    except Exception as e:
+        print(f"Error while processing /start command: {e}")
+        
+@bot.message_handler(commands=['canary'])
+def canary_command(message):
+    response = ("*📥 Download the HttpCanary APK Now! 📥*\n\n"
+                "*🔍 Track IP addresses with ease and stay ahead of the game! 🔍*\n"
+                "*💡 Utilize this powerful tool wisely to gain insights and manage your network effectively. 💡*\n\n"
+                "*Choose your platform:*")
+
+    markup = types.InlineKeyboardMarkup()
+    button1 = types.InlineKeyboardButton(
+        text="📱 𝗗𝗼𝘄𝗻𝗹𝗼𝗮𝗱 𝗙𝗼𝗿 𝗔𝗻𝗱𝗿𝗼𝗶𝗱 📱",
+        url="https://t.me/DAKUBHAIZ/143")
+    button2 = types.InlineKeyboardButton(
+        text="🍎 𝗗𝗼𝘄𝗻𝗹𝗼𝗮𝗱 𝗳𝗼𝗿 𝗶𝗢𝗦 🍎",
+        url="https://apps.apple.com/in/app/surge-5/id1442620678")
+
+    markup.add(button1)
+    markup.add(button2)
+
+    try:
+        bot.send_message(message.chat.id,
+                         response,
+                         parse_mode='Markdown',
+                         reply_markup=markup)
+    except Exception as e:
+        logging.error(f"Error while processing /canary command: {e}")
+
+
+if __name__ == "__main__":
+    asyncio_thread = Thread(target=start_asyncio_thread, daemon=True)
+    asyncio_thread.start()
+    extend_and_clean_expired_users()
+    logging.info("Starting Codespace activity keeper and Telegram bot...")
+    while True:
+        try:
+            bot.polling(none_stop=True)
+        except Exception as e:
+            logging.error(f"An error occurred while polling: {e}")
+        logging.info(f"Waiting for {REQUEST_INTERVAL} seconds before the next request...")
+        time.sleep(REQUEST_INTERVAL)
+ 
