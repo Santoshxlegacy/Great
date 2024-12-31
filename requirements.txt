@@ -2,3 +2,5 @@ python-telegram-bot>=12.0,<14.0
 pymongo
 flask
 telebot
+urllib3
+aiohttp asyncio motor
