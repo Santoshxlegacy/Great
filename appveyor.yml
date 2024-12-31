@@ -1,5 +1,5 @@
 version: 1.0.{build}
-image: Ubuntu-22.04
+image: Ubuntu-20.04
 
 # Define the environment variables if needed
 environment:
