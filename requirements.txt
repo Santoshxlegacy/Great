@@ -3,4 +3,6 @@ pymongo
 flask
 telebot
 urllib3
-aiohttp asyncio motor
+aiohttp 
+asyncio 
+motor
