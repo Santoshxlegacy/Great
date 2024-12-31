@@ -1,5 +1,4 @@
 version: 1.0.{build}
-image: Linux
 
 # Define the environment variables if needed
 environment:
