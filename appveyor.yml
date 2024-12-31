@@ -1,5 +1,5 @@
 version: 1.0.{build}
-image: Ubuntu-18.04
+image: Ubuntu
 
 # Define the environment variables if needed
 environment:
