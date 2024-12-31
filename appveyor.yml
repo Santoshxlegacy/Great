@@ -1,16 +1,16 @@
 version: 1.0.{build}
-image: Ubuntu
+image: Ubuntu  # Use a supported Ubuntu image or another compatible image
 
-# Define the environment variables if needed
+# Specify Python version 3.7 or above
 environment:
-  PYTHON_VERSION: '3.8'
+  PYTHON_VERSION: '3.7'
 
 # Install dependencies
 install:
   - sudo apt-get update
-  - sudo apt-get install -y python3-pip
-  - python3 -m pip install --upgrade pip
-  - python3 -m pip install python-telegram-bot pymongo telebot # Install Python dependencies
+  - sudo apt-get install -y python3-pip python3.7
+  - python3.7 -m pip install --upgrade pip
+  - python3.7 -m pip install -r requirements.txt  # Install Python dependencies
 
 # Before script to give permission to the binary (if needed)
 before_build:
@@ -18,4 +18,4 @@ before_build:
 
 # Define the build and test script
 build_script:
-  - python3 evil.py  # Execute the Python script
+  - python3.7 evil.py  # Execute the Python script with Python 3.7
