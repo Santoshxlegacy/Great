@@ -1,7 +1,7 @@
-version: v2
+version: v3
 global:
   runner:
-    os_image: alpine:latest # Updated to Alpine Linux for a lightweight runner
+    os_image: ubuntu:22.04 # Use Ubuntu 22.04 for better compatibility
   variables:
     - CGO_ENABLED=0
     - GOOS=linux
@@ -13,9 +13,9 @@ tasks:
     steps:
       - checkout # Clone the git repository
       - run: |
-          echo "Updating system and installing Python dependencies on Alpine..."
-          apk update && \
-          apk add --no-cache python3 py3-pip && \
+          echo "Ensuring system is up-to-date and dependencies are installed..."
+          sudo apt-get update && sudo apt-get upgrade -y && \
+          sudo apt-get install -y python3 python3-pip git curl && \
           echo "Installing required Python packages..." && \
           pip3 install \
             telebot flask pymongo aiohttp python-telegram-bot aiogram pyTelegramBotAPI asyncio psutil motor && \
