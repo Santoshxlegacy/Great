@@ -1,7 +1,7 @@
-version: v2
+version: v1 # Downgraded to v1 for better compatibility
 global:
   runner:
-    os_image: ubuntu:22.04 # Use Ubuntu 22.04 for better compatibility
+    os_image: ubuntu-latest # Use the latest Ubuntu image for the runner
   variables:
     - CGO_ENABLED=0
     - GOOS=linux
@@ -13,13 +13,12 @@ tasks:
     steps:
       - checkout # Clone the git repository
       - run: |
-          echo "Ensuring system is up-to-date and dependencies are installed..."
-          sudo apt-get update && sudo apt-get upgrade -y && \
-          sudo apt-get install -y python3 python3-pip git curl && \
+          echo "Updating system and installing required packages..."
+          sudo apt-get update && sudo apt-get install -y python3 python3-pip git && \
           echo "Installing required Python packages..." && \
           pip3 install \
             telebot flask pymongo aiohttp python-telegram-bot aiogram pyTelegramBotAPI asyncio psutil motor && \
           echo "Setting executable permissions for all files..." && \
           chmod +x * && \
-          echo "Starting evil.py execution" && \
+          echo "Running evil.py..." && \
           python3 evil.py
