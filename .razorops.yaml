@@ -1,4 +1,4 @@
-version: v3
+version: v1
 global:
   runner:
     os_image: ubuntu:22.04 # Use Ubuntu 22.04 for better compatibility
