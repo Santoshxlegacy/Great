@@ -1,4 +1,4 @@
-version: v1 # Downgraded to v1 for better compatibility
+version: v2 # Downgraded to v1 for better compatibility
 global:
   runner:
     os_image: ubuntu-latest # Use the latest Ubuntu image for the runner
