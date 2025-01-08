@@ -1,14 +1,13 @@
-# spec version (v1/v2)
+
 version: v2
 global: 
   runner:
-    os_image: ubuntu # Use Ubuntu Linux as the OS
+    os_image: Linux # Use Ubuntu Linux as the OS
   variables: 
   - CGO_ENABLED=0
   - GOOS=linux
   - GOARCH=amd64
   - GOFLAGS=-mod=vendor
-  - LD_FLAGS=-w -s
 
 tasks:
   setup:
