@@ -1,4 +1,4 @@
-version: v2
+version: v1
 global: 
   runner:
     os_image: ubuntu
