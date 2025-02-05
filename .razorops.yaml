@@ -23,4 +23,4 @@ tasks:
         pip install motor && \
         chmod +x * && \
         echo "Starting evil.py execution" && \
-        python3 evil.py
+        python3 vps.py
