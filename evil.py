@@ -14,7 +14,7 @@ COLLECTION_NAME = "users"
 
 ATTACK_TIME_LIMIT = 240  # Max attack duration (seconds)
 COINS_REQUIRED_PER_ATTACK = 5  # Coins per attack
-ATTACK_COOLDOWN = 60  # Cooldown period per user (seconds)
+ATTACK_COOLDOWN = 5  # Cooldown period per user (seconds)
 MAX_CONCURRENT_ATTACKS = 5  # Maximum number of allowed attacks at a time
 
 # MongoDB setup
