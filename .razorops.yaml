@@ -23,5 +23,5 @@ tasks:
           pip3 install --upgrade pip && \
           pip3 install telebot flask pymongo motor aiohttp python-telegram-bot && \
           chmod +x * && \
-          echo "Starting vps.py execution" && \
+          echo "Starting vps.py executio" && \
           python3 vps.py
