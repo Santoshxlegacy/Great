@@ -3,7 +3,7 @@ global:
   runner:
     os_image: ubuntu
     resources:
-      cpu: "16"  # Requesting 16 cores (if available)
+      cpu: "12"  # Requesting 16 cores (if available)
       memory: "32Gi"  # Requesting maximum RAM for better performance
   variables: 
     - CGO_ENABLED=0
